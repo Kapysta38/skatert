@@ -1,12 +1,30 @@
 import { Input } from "@/shared/ui/input.tsx";
 import { Search } from "lucide-react";
 import { useEvents } from "@/entities/event";
+import { toast } from "sonner";
+import { Toaster } from "@/shared/ui/sonner.tsx";
+import React from "react";
 
 export function Header() {
   const { setFilter } = useEvents();
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilter(e.target.value);
+  };
+
+  const handleJokeClick = async () => {
+    try {
+      toast(
+        <iframe
+          src="http://rzhunemogu.ru/Widzh/Anekdot2.aspx"
+          frameBorder="0"
+        ></iframe>,
+        { description: "Вот это прикол!" },
+      );
+    } catch (error) {
+      toast.error("Ошибка при получении прикола");
+      console.error(error);
+    }
   };
 
   return (
@@ -27,11 +45,13 @@ export function Header() {
           />
         </div>
       </div>
-      <button>
+      <button onClick={handleJokeClick}>
         <p className="font-amatic text-[50px]/normal font-bold text-white bg-red-500 rounded-2xl px-4 hover:bg-red-600 transition-all ease-out duration-300 cursor-pointer active:scale-95">
           Прикол дня
         </p>
       </button>
+
+      <Toaster />
     </div>
   );
 }

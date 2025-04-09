@@ -1,7 +1,6 @@
 import { IEvent } from "@/entities/event";
 import { EventCategories } from "@/entities/event";
 import { EventsCarousel } from "@/widgets/eventsCarousel";
-import { slugify } from "@/shared/lib/utils.ts";
 
 interface CategoryEventsProps {
   events: IEvent[];
@@ -19,7 +18,7 @@ export function CategoryEvents({ events }: CategoryEventsProps) {
   return (
     // Контейнер для скролла от секции к секции
     <div className="flex flex-col">
-      {Object.values(EventCategories).map((category) => {
+      {Object.values(EventCategories).map((category, index) => {
         // Фильтруем события по текущей категории
         const filteredEvents = events.filter(
           (event) => event.type === category,
@@ -28,7 +27,7 @@ export function CategoryEvents({ events }: CategoryEventsProps) {
         return (
           <section
             key={category}
-            id={slugify(category)}
+            id={index.toString()}
             style={{
               backgroundImage: `url(${backgroundMap[category]})`,
               backgroundColor: "rgba(185,178,167,1)",
