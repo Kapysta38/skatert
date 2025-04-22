@@ -1,0 +1,15 @@
+[Unit]
+Description=React App Service
+After=network.target
+
+[Service]
+Type=simple
+User=ваш_пользователь
+ExecStart=/home/kapysta/test_site/skatert/start.sh
+WorkingDirectory=/home/kapysta/test_site/skatert
+Restart=always
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target
