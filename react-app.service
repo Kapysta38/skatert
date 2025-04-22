@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-User=ваш_пользователь
+User=kapysta
 ExecStart=/home/kapysta/test_site/skatert/start.sh
 WorkingDirectory=/home/kapysta/test_site/skatert
 Restart=always
